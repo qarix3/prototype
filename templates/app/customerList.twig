@@ -1,0 +1,37 @@
+{% extends 'layout.twig' %}
+
+{% block title %}{{ parent() }} | Customer List{% endblock %}
+
+ {% block body %}
+
+ <table id="pink">
+     <td>
+         <h2 class="ui header">Customer List</h2>
+         <a href="{{ path_for('new', {id:id}) }}">Create New Customer</a>
+     <input type="text" name="search" placeholder="Search..">
+         <br><br>
+         <table align="left" bgcolor="white">
+             <tr>
+                 <th>No.</th>
+                 <th>Name</th>
+
+                 <th>Phone No.</th>
+                 <th colspan="3"></th>
+             </tr>
+             <tr>
+                 {% for customer in customers %}
+                 <td>{{ loop.index }}</td>
+                 <td>{{ customer.name }}</td>
+                 <td>{{ customer.phoneNo }}</td>
+                 <td><a href="{{ path_for('view', {user_id: 1}) }}">View</a></td>
+                 <td><a href="{{ path_for('edit', {user_id: 1}) }}">Edit</a></td>
+                 <td><a href="#">Delete</a></td>
+             </tr>
+             {% else %}
+                 <td>There are no customer here :(</td>
+             {% endfor %}
+         </table>
+     </td>
+ </table>
+
+{% endblock %}

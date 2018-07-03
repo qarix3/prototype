@@ -1,0 +1,37 @@
+{% extends 'layout.twig' %}
+
+{% block title %}{{ parent() }} | New Repair{% endblock %}
+{% block body %}
+<a href="#">Back</a>
+<table id="pink">
+    <td>
+        <h2>New Repair</h2>
+        <form action="#" method="post" name="#" id="#" enctype= "#">
+            <table bgcolor="white" border="0">
+                <tr>
+                    <th colspan="2"></th>
+                </tr>
+                <tr>
+                    <td>Customer Info</td>
+                    <td><input type="text" name="" id=""></td>
+                </tr>
+                <tr>
+                    <td>Brand</td>
+                    <td><input type="text" name="" id=""></td>
+                </tr>
+                <tr>
+                    <td>Model</td>
+                    <td><input type="text" name="" id=""></td>
+                </tr>
+                <tr>
+                    <td>Date Send</td>
+                    <td>{{ "now"|date("d/m/Y" , "Asia/Kuala_Lumpur") }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" name="" value="Submit"><input type="button" name=""value="Cancel"></td>
+                </tr>
+            </table>
+        </form>
+    </td>
+</table>
+{% endblock %}

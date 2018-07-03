@@ -1,0 +1,40 @@
+{% extends 'layout.twig' %}
+
+{% block title %}{{ parent() }} | Product Status{% endblock %}
+{% block body %}
+<table id="pink">
+    <td><h2>Product Status</h2>
+    <input type="text" name="search" placeholder="Search..">
+        <br><br>
+        <table bgcolor="white">
+            <tr>
+                <th>No.</th>
+                <th>Customer Name</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Repaired on</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                {% for product in products %}
+                <td>{{ loop.index }}</td>
+                <td><a href="{{ path_for('view',{user_id: 2}) }}">{{ product.name }}</a></td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.model }}</td>
+                {% set status = product.status %}
+                {% if status == false %}
+                    <td>{{ product.updated_at | date("d/m/Y" , "Asia/Kuala_Lumpur") }}</td>
+                    <td><a id="done" href="{{ path_for('updateStatus',{id: 1}) }}">Done</a></td>
+                {% else %}
+                    <td id="process"> In progress </td>
+                    <td><a href="{{ path_for('updateStatus',{id: 1}) }}">Pending</a></td>
+                {% endif %}
+            </tr>
+            {% else %}
+                <td>There are no product here :( </td>
+            {% endfor %}
+        </table>
+    </td>
+</table>
+{% endblock %}

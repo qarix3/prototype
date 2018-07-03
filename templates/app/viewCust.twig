@@ -1,0 +1,70 @@
+{% extends 'layout.twig' %}
+{% block title %}{{ parent() }} | Profile{% endblock %}
+{% block body %}
+
+<table id="pink">
+    <td>
+        <h2 class="ui header">Profile</h2>
+        <table bgcolor="white" border="1">
+            <tr>
+                <a href="{{ path_for('repairWithCustomer',{user_id: 1})}} ">New Repair </a><th colspan="2">Customer Profile</th>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{ user.name }}</td>
+            </tr>
+            <tr>
+                <td>IC</td>
+                <td>{{ user.icNo }}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{ user.address }}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td>{{ user.phoneNo }}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{  customer.email  }}</td>
+            </tr>
+            <tr>
+                <td>Last login</td>
+                <td>{{  date  }}</td>
+            </tr>
+        </table>
+<br>
+        <table bgcolor="white">
+            <tr>
+                <th colspan="5">Repair List</th>
+            </tr>
+            <tr>
+                <td>No.</td>
+                <td>Brand</td>
+                <td>Date</td>
+                <td>Status</td>
+                <td>Total Price</td>
+            </tr>
+            {% for product in products %}
+            <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ product.brand }}</td>
+                    <td>{{ product.finished_date }}</td>
+                        {% set status = product.status %}
+                        {% if status == false %}
+                            <td><a id="done" href="{{ path_for('updateStatus',{id: 1}) }}">Done</a></td>
+                        {% else %}
+                            <td><a href="{{ path_for('updateStatus',{id: 1}) }}">In progress</a></td>
+                        {% endif %}
+                    <td></td>
+                {% else %}
+                    <td colspan="5">There are no product repair yet :(</td>
+            </tr>
+                {% endfor %}
+        </table>
+    </td>
+</table>
+
+
+{% endblock %}

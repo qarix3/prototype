@@ -1,0 +1,66 @@
+{% extends 'layout.twig' %}
+{% block body %}
+
+<table id="pink">
+<td><h2>Status Update</h2>
+    <form action="#" method="post" name="#" id="#" enctype= "#">
+        <table border="0" bgcolor="white">
+            <tr>
+                <th colspan="2"></th>
+            </tr>
+            <tr>
+                <td>Brand</td>
+                <td>{{ technician.brand }}</td>
+            </tr>
+            <tr>
+                <td>Model</td>
+                <td>{{ technician.model }}</td>
+            </tr>
+            <tr>
+                <td>Date send</td>
+                <td>{{ technician.create_at | date("d/m/Y" , "Asia/Kuala_Lumpur") }}</td>
+            </tr>
+
+
+            {% if technician.status == 0 %}
+                <tr>
+                    <td>Date finished</td>
+                    <td><input type="text" name="" id="" value=" {{ "now"|date("m/d/Y") }}"></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td><span id="process">In progress</span></td>
+                </tr>
+
+            {% else %}
+
+                <tr>
+                    <td>Date finished</td>
+                    <td>{{ technician.finished_date | date("d/m/Y" , "Asia/Kuala_Lumpur") }}</td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td><span id="done" >Done</span></td>
+                </tr>
+            {% endif %}
+
+            <tr>
+                <td>Technician</td>
+                <td>{{ technician.name }}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td><select name="" id="">
+                        <option value="">Ready</option>
+                        <option value="">Not Ready</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td colspan="2"><a href="{{ path_for('update',{id: 1}) }} ">Edit </a><input type="submit" name=""value="Update"></td>
+            </tr>
+            </tr>
+        </table>
+    </form>
+</td>
+</table>
+{% endblock %}

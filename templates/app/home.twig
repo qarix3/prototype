@@ -1,0 +1,15 @@
+{% extends 'layout.twig' %}
+
+{% block title %}{{ parent() }} | Welcome{% endblock %}
+
+{% block body %}
+    <div class="ui raised very padded text container segment">
+        <h2 class="ui header">Welcome to Touch Media</h2>
+        {% if auth.check() %}
+            <a href="{{ path_for('dashboard') }}">Staff</a>
+        {% else %}
+            <a href="#">Guest</a>
+        {% endif %}
+   </div>
+
+{% endblock %}

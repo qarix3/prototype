@@ -1,0 +1,47 @@
+{% extends 'layout.twig' %}
+
+{% block title %}{{ parent() }} | Edit Customer{% endblock %}
+
+{% block body %}
+
+<table id="pink">
+    <td>
+
+        <form action="#" method="post" name="#" id="#" enctype= "#">
+            <table bgcolor="white">
+                   <h2 class="ui header">Edit Customer</h2>
+                <tr>
+                    <th colspan="2"></th>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="" id="" value="{{ customer.name }}"></td>
+                </tr>
+                <tr>
+                    <td>IC</td>
+                    <td><input type="text" name="" id="" value="{{ customer.icNo }}"></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><input type="text" name="" id="" value="{{ customer.address }}"></td>
+                </tr>
+                <tr>
+                    <td>Phone Number</td>
+                    <td><input type="text" name="" id="" value="{{ customer.phoneNo }}"></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" name="" id="" {{ customer.email }}"></td>
+                </tr>
+                <tr>
+                    <input type="hidden" name="csrf_name" value="{{ csrf.name }}">
+                    <input type="hidden" name="csrf_value" value="{{ csrf.value }}">
+                    <td colspan="2"><input type="submit" name="" value="Save">
+                </tr>
+                </tr>
+            </table>
+        </form>
+    </td>
+</table>
+</div>
+{% endblock %}

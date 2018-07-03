@@ -1,0 +1,28 @@
+{% extends 'layout.twig' %}
+{% block title %}{{ parent() }} | Parts{% endblock %}
+{% block body %}
+<table id="pink">
+    <td><h2 class="ui header">Parts</h2>
+        <input type="text" name="search" placeholder="Search..">
+        <br><br>
+        <table align="left" bgcolor="white">
+            <tr>
+                <th>No.</th>
+                <th>Manufacturer</th>
+                <th>Type</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                {% for repair in repairs %}
+                <td>{{ repair.id }}</td>
+                <td>{{ repair.manufacturer }}</td>
+                <td>{{ repair.type }}</td>
+                <td><span>RM </span>{{ repair.price |number_format(2)}}</td>
+            </tr>
+            {% else %}
+                <td>There are no product here :( </td>
+            {% endfor %}
+        </table>
+    </td>
+</table>
+{% endblock %}
