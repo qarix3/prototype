@@ -3,7 +3,7 @@
 
 <table id="pink">
 <td><h2>Status Update</h2>
-    <form action="#" method="post" name="#" id="#" enctype= "#">
+    <form action="{{ path_for('update',{id:technician.id}) }}" method="POST">
         <table border="0" bgcolor="white">
             <tr>
                 <th colspan="2"></th>
@@ -49,12 +49,21 @@
             <tr>
                 <td>Status</td>
                 <td><select name="" id="">
-                        <option value="">Ready</option>
-                        <option value="">Not Ready</option>
+                        <option value="1">Ready</option>
+                        <option value="0">Not Ready</option>
                     </select></td>
             </tr>
             <tr>
-                <td colspan="2"><a href="{{ path_for('update',{id: technician.id  }) }} ">Edit </a><input type="submit" name=""value="Update"></td>
+                <input type="hidden" name="id" id="" value="{{ technician.id }}"/>
+                <input type="hidden" name="finished_date" id="" value="{{ technician.finished_date }}"/>
+                <input type="hidden" name="status" id="" value="{{ technician.status }}"/>
+                <input type="hidden" name="staff_id" id="" value="{{ technician.staff_id }}"/>
+                <input type="hidden" name="product_id" id="" value="{{ technician.product_id }}"/>
+
+                {{ csrf() }}
+                <input type="hidden" name="_METHOD" value="PUT"/>
+                <td colspan="2"><a href="{{ path_for('update',{id: technician.id  }) }} ">Edit </a>
+                    <input type="submit" name=""value="Update"></td>
             </tr>
             </tr>
         </table>

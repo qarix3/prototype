@@ -27,6 +27,9 @@ final class CustomerController extends Controller
 
     public function new(Request $request, Response $response)
     {
+        $route = $request->getAttribute('route');
+        $id = $route->getArguments('id');
+
         if ($request->isPost()) {
 
             $name = $request->getParam('name');
@@ -42,7 +45,7 @@ final class CustomerController extends Controller
                     'address' => $address,
                     'phoneNo' =>$phoneNo,
                     //'email' => $email,
-                    'user_id' => 101,
+                    'user_id' => $id,
                 ]);
 
             Customer::create($customer);
@@ -68,9 +71,9 @@ final class CustomerController extends Controller
 //                $this->validator->addError('username', 'This username is already used.');
 //            }
 //
-            if ($this->auth->findByCredentials(['login' => $email])) {
-                $this->validator->addError('email', 'This email is already used.');
-            }
+//            if ($this->auth->findByCredentials(['login' => $email])) {
+//                $this->validator->addError('email', 'This email is already used.');
+//            }
 //
 //            if ($this->validator->isValid()) {
 //                /** @var \Cartalyst\Sentinel\Roles\EloquentRole $role */
@@ -84,7 +87,9 @@ final class CustomerController extends Controller
 //                        'user.delete' => 0
 ////                    ]
 ////                ]);
+
                 $this->flash('success', 'Customer account has been created.');
+                return $this->redirect($response, 'home');
         }
         return $this->render($response, 'app/newCust.twig');
     }
@@ -98,14 +103,14 @@ final class CustomerController extends Controller
 
         $user = $customer->user;
 
-        if ($request->isPost()) {
+        if ($request->isPut()) {
 
             $name = $request->getParam('name');
             $icNo = $request->getParam('icNo');
             $address = $request->getParam('address');
             $phoneNo = $request->getParam('phoneNo');
             $email = $request->getParam('email');
-
+            $userid = $request->getParam('user_id');
 
             $customerData = [
                 'name' => $name,
@@ -113,9 +118,10 @@ final class CustomerController extends Controller
                 'address' => $address,
                 'phoneNo' =>$phoneNo,
                 'email' => $email,
-                'user_id' => $id,
+                'user_id' => $userid,
             ];
-            $customer->save;
+
+            $customer->update($customerData);
 
             $this->flash('success', 'Customer account has been updated');
             return $this->redirect($response, 'customer');
@@ -132,21 +138,27 @@ final class CustomerController extends Controller
         $route = $request->getAttribute('route');
         $id = $route->getArguments('id');
 
-        $user = Customer::with('user')->where('user_id','=',$id)->firstOrFail();
+        //$user = User::with('product', 'customer')->where('id', '=', $id)->first();
 
-        $product = Product::join('repairStatus','product.id','=','repairStatus.product_id')
+        $customer = Customer::with('user')
+            ->where('user_id','=',$id)
+            ->firstOrFail();
 
-            ->join('customer','product.cust_id','=','user_id')->where('user_id','=',$id)->get();
+       $product = Product::join('customer','product.user_id','=','customer.id')
+           ->join('repairStatus','product.id','=','repairStatus.product_id')
+           ->join('repairPart','product.part_id','=','repairPart.id')
+           ->where('customer.id','=',$id)
+           ->get();
 
-        $customer = $user->user;
+       $user = $customer->user;
 
-        $date = Carbon::parse($user->user->last_login)->diffForHumans();
+       $date = Carbon::parse($customer->user->last_login)->diffForHumans();
 
         return $this->render($response, 'app/viewCust.twig', [
             'user' => $user,
-            'products' => $product,
             'customer' => $customer,
             'date' => $date,
+            'product' => $product,
         ]);
     }
 
@@ -166,4 +178,22 @@ final class CustomerController extends Controller
         return $this->redirect($response, 'customer');
     }
 
+
+
+
+
+    public function filter(Request $request, Response $response)
+    {
+        $method = 'icNo';
+
+        if($request->isPost()) {
+            $search = $request->getParam('search');
+        }
+
+        $customer = Customer::where($method,'=',$search)->get();
+
+        return $this->render($response, 'app/customerList.twig', [
+            'customers' => $customer,
+        ]);
+    }
 }

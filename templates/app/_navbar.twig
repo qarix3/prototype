@@ -1,5 +1,5 @@
 <nav class="ui borderless top fixed menu">
-    <a href="{{ path_for('home') }}" class="header item">e-Repair System</a>
+    <a href="{{ path_for('dashboard') }}" class="header item">e-Repair System</a>
     <div class="right menu">
         {% if auth.check() %}
             <div class="header item">{{ auth.user.username }}</div>
@@ -10,9 +10,9 @@
             <div class="item">
                 <a href="{{ path_for('login') }}" class="ui circular button">Login</a>
             </div>
-            <div class="item">
-                <a href="{{ path_for('register') }}" class="ui teal circular button">Register</a>
-            </div>
+            {#<div class="item">#}
+                {#<a href="{{ path_for('register') }}" class="ui teal circular button">Register</a>#}
+            {#</div>#}
         {% endif %}
     </div>
 </nav>

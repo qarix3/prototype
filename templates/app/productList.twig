@@ -4,7 +4,11 @@
 {% block body %}
 <table id="pink">
     <td><h2>Product Status</h2>
-    <input type="text" name="search" placeholder="Search..">
+        <form action="{{ path_for('searchP') }}" method="POST">
+            {{ csrf() }}
+            <input type="text" name="search" placeholder="Search.."><input type="submit" name="" value="Submit">
+        </form>
+
         <br><br>
         <table bgcolor="white">
             <tr>
@@ -31,7 +35,7 @@
                 {% endif %}
             </tr>
             {% else %}
-                <td>There are no product here :( </td>
+                <td colspan="6">There are no product here :( {{ product.brand }}</td>
             {% endfor %}
         </table>
     </td>

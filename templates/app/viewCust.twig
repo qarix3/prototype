@@ -7,31 +7,33 @@
         <h2 class="ui header">Profile</h2>
         <table bgcolor="white" border="1">
             <tr>
-                <a href="{{ path_for('repairWithCustomer',{user_id: 1})}} ">New Repair </a><th colspan="2">Customer Profile</th>
+                <a href="{{ path_for('repairWithCustomer',{user_id: customer.id})}} ">New Repair </a>
+                <a href="{{ path_for('edit',{id: customer.id })}} ">Update Profile</a>
+                <th colspan="2">Customer Profile</th>
             </tr>
             <tr>
                 <td>Name</td>
-                <td>{{ user.name }}</td>
+                <td>{{ customer.name }}</td>
             </tr>
             <tr>
                 <td>IC</td>
-                <td>{{ user.icNo }}</td>
+                <td>{{ customer.icNo }}</td>
             </tr>
             <tr>
                 <td>Address</td>
-                <td>{{ user.address }}</td>
+                <td>{{ customer.address }}</td>
             </tr>
             <tr>
                 <td>Phone Number</td>
-                <td>{{ user.phoneNo }}</td>
+                <td>{{ customer.phoneNo }}</td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td>{{  customer.email  }}</td>
+                <td>{{ user.email  }}</td>
             </tr>
             <tr>
                 <td>Last login</td>
-                <td>{{  date  }}</td>
+                <td>{{ date }}</td>
             </tr>
         </table>
 <br>
@@ -47,20 +49,20 @@
                 <td>Status</td>
                 <td>Total Price</td>
             </tr>
-            {% for product in products %}
+            {% for product in product %}
             <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ product.brand }}</td>
                     <td>{{ product.model }}</td>
                     <td>{{ product.finished_date }}</td>
                         {% if product.status == 1 %}
-                            <td><a id="done">Done</a></td>
+                            <td><a id="done" href="{{ path_for('updateStatus',{id: product.id }) }}">Done</a></td>
                         {% else %}
                             <td><a href="{{ path_for('updateStatus',{id: product.id }) }}">In progress</a></td>
                         {% endif %}
-                    <td></td>
+                    <td><span>RM </span>{{ product.price |number_format(2) }}</td>
                 {% else %}
-                    <td colspan="5">There are no product repair yet :(</td>
+                    <td colspan="6">There are no product repair yet :(</td>
             </tr>
                 {% endfor %}
         </table>

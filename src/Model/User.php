@@ -10,6 +10,8 @@ class User extends EloquentUser
 
     protected $primaryKey = 'id';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'username',
         'email',
@@ -21,10 +23,10 @@ class User extends EloquentUser
 
     protected $loginNames = ['username', 'email'];
 
-//    public function product()
-//    {
-//        return $this->hasManyThrough('App\Model\Product', 'App\Model\Customer', 'user_id', 'cust_id', 'id', 'user_id');
-//    }
+    public function product()
+    {
+        return $this->hasManyThrough('App\Model\Product', 'App\Model\Customer', 'user_id', 'user_id', 'id', 'user_id');
+    }
     public function customer()
     {
         return $this->hasOne('App\Model\Customer');

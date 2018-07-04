@@ -8,13 +8,15 @@
      <td>
          <h2 class="ui header">Customer List</h2>
          <a href="{{ path_for('new', {id:id}) }}">Create New Customer</a>
-     <input type="text" name="search" placeholder="Search..">
+         <form action="{{ path_for('searchC') }}" method="POST">
+             {{ csrf() }}
+             <input type="text" name="search" placeholder="Search.."><input type="submit" name="" value="Submit">
+         </form>
          <br><br>
          <table align="left" bgcolor="white">
              <tr>
                  <th>No.</th>
                  <th>Name</th>
-
                  <th>Phone No.</th>
                  <th colspan="3"></th>
              </tr>
@@ -34,7 +36,7 @@
                 </td>
              </tr>
              {% else %}
-                 <td>There are no customer here :(</td>
+                 <td colspan="4">There are no customer here :(</td>
              {% endfor %}
          </table>
      </td>

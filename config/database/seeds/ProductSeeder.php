@@ -26,7 +26,7 @@ class ProductSeeder extends AbstractSeed
                 'created_at' => $faker->time('2008-04-25 08:37:17'),
                 'updated_at' => $faker->time('2018-04-25 08:37:47'),
                 'part_id'    => $faker->numberBetween($min = 1, $max = 49),
-                'cust_id'    => $faker->numberBetween($min = 1, $max = 100),
+                'user_id'    => $faker->numberBetween($min = 1, $max = 100),
             ];
         }
         $this->insert('product', $data);

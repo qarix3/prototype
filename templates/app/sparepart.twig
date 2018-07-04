@@ -3,7 +3,10 @@
 {% block body %}
 <table id="pink">
     <td><h2 class="ui header">Parts</h2>
-        <input type="text" name="search" placeholder="Search..">
+        <form action="{{ path_for('searchPart') }}" method="POST">
+            {{ csrf() }}
+            <input type="text" name="search" placeholder="Search.."><input type="submit" name="" value="Submit">
+        </form>
         <br><br>
         <table align="left" bgcolor="white">
             <tr>

@@ -8,10 +8,15 @@ class Product extends Model
 {
     protected $table = 'product';
 
+    protected $primaryKey = 'id';
+
+    public $timestamps = false;
+
     protected $fillable = [
-        'productId',
         'brand',
         'model',
+        'part_id',
+        'user_id',
     ];
 
     protected $dates = ['created_at','updated_at'];
@@ -19,7 +24,7 @@ class Product extends Model
 
     public function parts()
     {
-        return $this->hasMany('App\Model\Part','id');
+        return $this->hasOne('App\Model\Part','id');
     }
 
     public function status()
@@ -32,4 +37,8 @@ class Product extends Model
         return $this->belongsTo('App\Model\User', 'user_id');
     }
 
+    public function customer()
+    {
+        return $this->belongsTo('App\Model\Customer', 'user_id');
+    }
 }

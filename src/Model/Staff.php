@@ -10,6 +10,8 @@ class Staff extends Model
 
     protected $primaryKey = 'staffId';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'phoneNo',

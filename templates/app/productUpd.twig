@@ -3,26 +3,26 @@
 
 <table id="pink">
 <td><h2>Status Update</h2>
-    <form action="#" method="post" name="#" id="#" enctype= "#">
+    <form action="{{ path_for('update',{ id: technician.id}) }}" method="POST" >
         <table border="0" bgcolor="white">
             <tr>
                 <th colspan="2"></th>
             </tr>
             <tr>
                 <td>Brand</td>
-                <td><input type="text" name="" id="" value="{{ technician.brand }}"></td>
+                <td><input type="text" name="brand" id="" value="{{ technician.brand }}"></td>
             </tr>
             <tr>
                 <td>Model</td>
-                <td><input type="text" name="" id="" value="{{ technician.model }}"></td>
+                <td><input type="text" name="model" id="" value="{{ technician.model }}"></td>
             </tr>
             <tr>
                 <td>Date send</td>
-                <td><input type="text" name="" id="" value="{{ technician.created_at| date("d/m/Y") }}"></td>
+                <td><input type="text" name="created_date" id="" value="{{ technician.created_at| date("d/m/Y") }}"></td>
             </tr>
                 <tr>
                     <td>Date finished</td>
-                    <td><input type="text" name="" id="" value="{{ "now"|date("m/d/Y") }}" ></td>
+                    <td><input type="text" name="finished_date" id="" value="{{ "now"|date("m/d/Y") }}" ></td>
                 </tr>
                 <tr>
             <tr>
@@ -31,13 +31,16 @@
             </tr>
             <tr>
                 <td>Status</td>
-                <td><select name="" id="">
-                        <option value="">Ready</option>
-                        <option value="">Not Ready</option>
+                <td><select name="status" >
+                        <option value="1" >Ready</option>
+                        <option value="0" >Not Ready</option>
                     </select></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" name=""value="Update"></td>
+                <input type="hidden" name="staff" value={{ technician.staff_id }}>
+                {{ csrf() }}
+                <input type="hidden" name="_METHOD" value="PUT"/>
+                <td colspan="2"><input type="submit" name="" value="Update"></td>
             </tr>
             </tr>
         </table>

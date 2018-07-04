@@ -10,6 +10,8 @@ class Status extends Model
     protected $table = 'repairStatus';
 
     protected $primaryKey ='id';
+    public $timestamps = false;
+
 
     protected $fillable = [
         'finished_date',

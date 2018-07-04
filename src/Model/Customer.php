@@ -8,7 +8,7 @@ class Customer extends Model
 {
     protected $table = 'customer';
 
-    protected $primaryKey = 'icNo';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'icNo',
@@ -20,10 +20,17 @@ class Customer extends Model
 
     protected $dates = ['created_at','updated_at'];
 
+    public $timestamps = false;
+
     protected $timestamp = true;
 
     public function user()
     {
         return $this->belongsTo('App\Model\User', 'user_id');
+    }
+
+    public function product()
+    {
+        return $this->hasMany('App\Model\Product','user_id');
     }
 }

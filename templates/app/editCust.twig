@@ -33,8 +33,11 @@
                     <td>Email</td>
                     <td><input type="text" name="email" id="" placeholder="" value="{{ user.email }}"></td>
                 </tr>
+                    <input type="hidden" name="user_id" id="" placeholder="" value="{{  customer.user_id }}">
                 <tr>
                     {{ csrf() }}
+
+                    <input type="hidden" name="_METHOD" value="PUT"/>
                     <td colspan="2"><input type="submit" name="" value="Save">
                 </tr>
                 </tr>
