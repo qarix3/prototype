@@ -7,7 +7,7 @@
 <table id="pink">
     <td>
 
-        <form action="#" method="post" name="#" id="#" enctype= "#">
+        <form action="{{ path_for('edit',{id:customer.user_id}) }}" method="POST">
             <table bgcolor="white">
                    <h2 class="ui header">Edit Customer</h2>
                 <tr>
@@ -15,31 +15,39 @@
                 </tr>
                 <tr>
                     <td>Name</td>
-                    <td><input type="text" name="" id="" value="{{ customer.name }}"></td>
+                    <td><input type="text" name="name" id="" placeholder="" value="{{ customer.name }}"></td>
                 </tr>
                 <tr>
                     <td>IC</td>
-                    <td><input type="text" name="" id="" value="{{ customer.icNo }}"></td>
+                    <td><input type="text" name="icNo" id="" placeholder="" value="{{ customer.icNo }}"></td>
                 </tr>
                 <tr>
                     <td>Address</td>
-                    <td><input type="text" name="" id="" value="{{ customer.address }}"></td>
+                    <td><input type="text" name="address" id="" placeholder="" value="{{ customer.address }}"></td>
                 </tr>
                 <tr>
                     <td>Phone Number</td>
-                    <td><input type="text" name="" id="" value="{{ customer.phoneNo }}"></td>
+                    <td><input type="text" name="phoneNo" id="" placeholder="" value="{{ customer.phoneNo }}"></td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td><input type="text" name="" id="" {{ customer.email }}"></td>
+                    <td><input type="text" name="email" id="" placeholder="" value="{{ user.email }}"></td>
                 </tr>
                 <tr>
-                    <input type="hidden" name="csrf_name" value="{{ csrf.name }}">
-                    <input type="hidden" name="csrf_value" value="{{ csrf.value }}">
+                    {{ csrf() }}
                     <td colspan="2"><input type="submit" name="" value="Save">
                 </tr>
                 </tr>
             </table>
+            {% if has_errors() %}
+                <div class="ui error message">
+                    {% for paramErrors in errors() %}
+                        {% for error in paramErrors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </form>
     </td>
 </table>

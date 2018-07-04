@@ -21,4 +21,13 @@ class User extends EloquentUser
 
     protected $loginNames = ['username', 'email'];
 
+//    public function product()
+//    {
+//        return $this->hasManyThrough('App\Model\Product', 'App\Model\Customer', 'user_id', 'cust_id', 'id', 'user_id');
+//    }
+    public function customer()
+    {
+        return $this->hasOne('App\Model\Customer');
+    }
 }
+

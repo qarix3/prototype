@@ -4,43 +4,59 @@
 
 {% block body %}
 
-<a href="#">Back</a>
+<a href="{{ path_for('dashboard') }}">Back</a>
     <table id="pink">
         <td>
             <h2>New Customer</h2>
-            <form action="#" method="post" name="#" id="#" enctype= "#">
+            <form action="{{ path_for('new') }}" method="POST">
                 <table bgcolor="white">
                     <tr>
                         <th colspan="2"></th>
                     </tr>
                     <tr>
                         <td>Name</td>
-                        <td><input type="text" name="" id=""></td>
+                        <td>
+                            <input type="text" name="name" placeholder="" value="{{ val('name')}}">
+                        </td>
                     </tr>
                     <tr>
                         <td>IC</td>
-                        <td><input type="text" name="" id=""></td>
+                        <td>
+                            <input type="text" name="icNo" placeholder="" value="{{ val('icNo') }}">
+                        </td>
                     </tr>
                     <tr>
                         <td>Address</td>
                         <td>
-                        <textarea type="input" rows="4">
-
-                        </textarea></td>
+                            <input type="text" name="address" placeholder="" value="{{ val('address') }}">
+                        </td>
                     </tr>
                     <tr>
                         <td>Phone Number</td>
-                        <td><input type="text" name="" id="" value=""></td>
+                        <td>
+                            <input type="text" name="phoneNo" placeholder="" value="{{ val('phoneNo') }}">
+                        </td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><input type="text" name="" id=""></td>
+                        <td>
+                            <input type="text" name="email" placeholder="user@example.com" value="{{ val('email') }}">
+                        </td>
                     </tr>
                     <tr>
+                        {{ csrf() }}
                         <td colspan="2"><input type="submit" name=""value="Submit">
                     </tr>
-                    </tr>
                 </table>
+                {% if has_errors() %}
+                    <div class="ui error message">
+                        {% for paramErrors in errors() %}
+                            {% for error in paramErrors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </form>
         </td>
     </table>

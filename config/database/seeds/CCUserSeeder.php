@@ -26,6 +26,7 @@ class CCUserSeeder extends AbstractSeed
                 'email'         => $faker->email,
                 'first_name'    => $faker->firstName,
                 'last_name'     => $faker->lastName,
+
             ];
         }
         $this->insert('user', $data);

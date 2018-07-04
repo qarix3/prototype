@@ -37,12 +37,13 @@
 <br>
         <table bgcolor="white">
             <tr>
-                <th colspan="5">Repair List</th>
+                <th colspan="6">Repair List</th>
             </tr>
             <tr>
                 <td>No.</td>
                 <td>Brand</td>
-                <td>Date</td>
+                <td>Model</td>
+                <td>Date Send</td>
                 <td>Status</td>
                 <td>Total Price</td>
             </tr>
@@ -50,12 +51,12 @@
             <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ product.brand }}</td>
+                    <td>{{ product.model }}</td>
                     <td>{{ product.finished_date }}</td>
-                        {% set status = product.status %}
-                        {% if status == false %}
-                            <td><a id="done" href="{{ path_for('updateStatus',{id: 1}) }}">Done</a></td>
+                        {% if product.status == 1 %}
+                            <td><a id="done">Done</a></td>
                         {% else %}
-                            <td><a href="{{ path_for('updateStatus',{id: 1}) }}">In progress</a></td>
+                            <td><a href="{{ path_for('updateStatus',{id: product.id }) }}">In progress</a></td>
                         {% endif %}
                     <td></td>
                 {% else %}

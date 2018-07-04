@@ -15,14 +15,12 @@ class Customer extends Model
         'name',
         'address',
         'phoneNo',
+        'user_id'
     ];
 
     protected $dates = ['created_at','updated_at'];
 
-    public function product()
-    {
-        return $this->hasMany('App\Model\Product') ;
-    }
+    protected $timestamp = true;
 
     public function user()
     {

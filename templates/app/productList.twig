@@ -19,16 +19,15 @@
             <tr>
                 {% for product in products %}
                 <td>{{ loop.index }}</td>
-                <td><a href="{{ path_for('view',{user_id: 2}) }}">{{ product.name }}</a></td>
+                <td><a href="{{ path_for('view',{ id: product.user_id }) }}">{{ product.name }}</a></td>
                 <td>{{ product.brand }}</td>
                 <td>{{ product.model }}</td>
-                {% set status = product.status %}
-                {% if status == false %}
+                {% if product.status == 1 %}
                     <td>{{ product.updated_at | date("d/m/Y" , "Asia/Kuala_Lumpur") }}</td>
-                    <td><a id="done" href="{{ path_for('updateStatus',{id: 1}) }}">Done</a></td>
+                    <td><a id="done" href="{{ path_for('updateStatus',{id: product.id }) }}">Done</a></td>
                 {% else %}
                     <td id="process"> In progress </td>
-                    <td><a href="{{ path_for('updateStatus',{id: 1}) }}">Pending</a></td>
+                    <td><a href="{{ path_for('updateStatus',{id: product.id}) }}">Pending</a></td>
                 {% endif %}
             </tr>
             {% else %}

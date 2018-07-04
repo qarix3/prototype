@@ -14,10 +14,14 @@ $app->get('/logout', 'auth.controller:logout')
 
 // Customer
 $app->get('/customer', 'App\Controller\CustomerController:index')->setName('customer');
+// Customer Create
 $app->get('/customer/new/', 'App\Controller\CustomerController:new')->setName('new');
-$app->get('/customer/view/{user_id:[0-9]+}','App\Controller\CustomerController:view')->setName('view');
-$app->get( '/customer/edit/{user_id:[0-9]+}', 'App\Controller\CustomerController:edit')->setName('edit');
-$app->delete('/customer/delete/{user_id:[0-9]+}', 'App\Controller\CustomerController:destroy')->setName('destroy');
+$app->post('/customer/new/', 'App\Controller\CustomerController:new')->setName('new');
+
+$app->get('/customer/view/{id:[0-9]+}','App\Controller\CustomerController:view')->setName('view');
+$app->get( '/customer/edit/{id:[0-9]+}', 'App\Controller\CustomerController:edit')->setName('edit');
+$app->post( '/customer/edit/{id:[0-9]+}', 'App\Controller\CustomerController:edit')->setName('edit');
+$app->delete('/customer/delete/{id:[0-9]+}', 'App\Controller\CustomerController:delete')->setName('delete');
 
 // Product
 $app->get('/product', 'App\Controller\ProductController:index')->setName('product');

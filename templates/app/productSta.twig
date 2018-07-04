@@ -18,22 +18,11 @@
             </tr>
             <tr>
                 <td>Date send</td>
-                <td>{{ technician.create_at | date("d/m/Y" , "Asia/Kuala_Lumpur") }}</td>
+                <td>{{ technician.created_at | date("d/m/Y" , "Asia/Kuala_Lumpur") }}</td>
             </tr>
 
 
-            {% if technician.status == 0 %}
-                <tr>
-                    <td>Date finished</td>
-                    <td><input type="text" name="" id="" value=" {{ "now"|date("m/d/Y") }}"></td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td><span id="process">In progress</span></td>
-                </tr>
-
-            {% else %}
-
+            {% if technician.status == 1 %}
                 <tr>
                     <td>Date finished</td>
                     <td>{{ technician.finished_date | date("d/m/Y" , "Asia/Kuala_Lumpur") }}</td>
@@ -41,6 +30,15 @@
                 <tr>
                     <td>Status</td>
                     <td><span id="done" >Done</span></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td>Date finished</td>
+                    <td><input type="text" name="" id="" value=" {{ "now"|date("m/d/Y") }}"></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td><span id="process">In progress</span></td>
                 </tr>
             {% endif %}
 
@@ -56,7 +54,7 @@
                     </select></td>
             </tr>
             <tr>
-                <td colspan="2"><a href="{{ path_for('update',{id: 1}) }} ">Edit </a><input type="submit" name=""value="Update"></td>
+                <td colspan="2"><a href="{{ path_for('update',{id: technician.id  }) }} ">Edit </a><input type="submit" name=""value="Update"></td>
             </tr>
             </tr>
         </table>

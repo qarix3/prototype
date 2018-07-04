@@ -23,9 +23,15 @@
                  <td>{{ loop.index }}</td>
                  <td>{{ customer.name }}</td>
                  <td>{{ customer.phoneNo }}</td>
-                 <td><a href="{{ path_for('view', {user_id: 1}) }}">View</a></td>
-                 <td><a href="{{ path_for('edit', {user_id: 1}) }}">Edit</a></td>
-                 <td><a href="#">Delete</a></td>
+                 <td><a href="{{ path_for('view', {id: customer.user_id}) }}">View</a></td>
+                 <td><a href="{{ path_for('edit', {id: customer.user_id}) }}">Edit</a></td>
+                 <td>
+                 <form action="{{ path_for('delete',{id: customer.user_id}) }}" method="POST">
+                     <input type="hidden" name="_METHOD" value="DELETE"/>
+                     <input type="submit" value="Delete"/>
+                     {{ csrf() }}
+                 </form>
+                </td>
              </tr>
              {% else %}
                  <td>There are no customer here :(</td>
