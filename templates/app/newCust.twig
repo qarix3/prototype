@@ -38,11 +38,12 @@
                     <tr>
                         <td>Email</td>
                         <td>
-                            <input type="text" name="email" placeholder="user@example.com" value="{{ val('email') }}">
+                            <input type="text" name="email" placeholder="{{ user.email }}" value="{{ val('email') }}">
                         </td>
                     </tr>
                     <tr>
                         {{ csrf() }}
+                        <input type="hidden" name="id" placeholder="" value="{{ user.id }}">
                         <td colspan="2"><input type="submit" name=""value="Submit">
                     </tr>
                 </table>

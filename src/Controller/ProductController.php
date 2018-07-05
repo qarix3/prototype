@@ -45,15 +45,15 @@ class ProductController extends Controller
             $brand = $request->getParam('brand');
             $model = $request->getParam('model');
             $date = $request->getParam('date');
-            $userid = $request->getParam('user_id');
 
             $product = ([
-                'id' => $userid,
+
                 'brand' => $brand,
                 'model' => $model,
                 'created_at' => $date,
+                'updated_at' => null,
                 'part_id' => null,
-                'user_id' => $userid,
+                'user_id' => $id,
             ]);
 
             Product::create($product);
@@ -148,7 +148,7 @@ class ProductController extends Controller
 
     public function filter(Request $request, Response $response)
     {
-        $method = 'brand';
+        $method = 'model';
 
         if ($request->isPost())
             $search = $request->getParam('search');
@@ -163,19 +163,3 @@ class ProductController extends Controller
             ]);
     }
 }
-//$product = Product::where($id)->firstOrFail();
-//
-//        if ($request->isPut()) {
-//
-//            $proid = $request->getParam('id');
-//            $date = $request->getParam('finished_date');
-//            $status = $request->getParam('staff_id');
-//            $product = $request->getParam('product_id');
-//
-//            $productData = ([
-//                'id' => $pro,
-//                'finished_date' => $date,
-//                'status' => $status,
-//                'staff_id' => $staff,
-//                'product_id' => $productid,
-//            ]);

@@ -6,14 +6,14 @@
 <table id="pink">
     <td>
         <h2>New Repair</h2>
-        <form action="{{ path_for('repairWithCustomer',{user_id: id.user_id }) }}" method="POST">
+        <form action="{{ path_for('repairWithCustomer',{user_id: id}) }}" method="POST">
             <table bgcolor="white" border="0">
                 <tr>
                     <th colspan="2"></th>
                 </tr>
                 <tr>
                     <td>Customer ID</td>
-                    <td><input type="text" name="id" id="id" value="{{ id.user_id }}"></td>
+                    <td><input type="text" name="user_id" id="id" value="{{ id.id }}"></td>
                 </tr>
                 <tr>
                     <td>Brand</td>
@@ -28,7 +28,6 @@
                     <td><input type="text" name="created_at" id="" value="{{ "now"|date("d/m/Y" , "Asia/Kuala_Lumpur") }}"></td>
                 </tr>
                 <tr>
-                    <input type="hidden" name="user_id" id="" value="{{ id.user_id }}">
                     {{ csrf() }}
                     <td colspan="2"><input type="submit" name="" value="Submit"><input type="reset" name=""value="Cancel"></td>
                 </tr>

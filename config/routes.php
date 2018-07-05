@@ -26,7 +26,7 @@ $app->delete('/customer/delete/{id:[0-9]+}', 'App\Controller\CustomerController:
 // Product
 $app->get('/product', 'App\Controller\ProductController:index')->setName('product');
 $app->get('/product/new/{user_id:[0-9]+}','App\Controller\ProductController:repairWithCustomer')->setName('repairWithCustomer');
-$app->post('/product/new/{user_id:[0-9]+}','App\Controller\ProductController:repairWithCustomer')->setName('repairWithCustomer');
+$app->put('/product/new/{user_id:[0-9]+}','App\Controller\ProductController:repairWithCustomer')->setName('repairWithCustomer');
 $app->get('/product/update/{id:[0-9]+}', 'App\Controller\ProductController:update')->setName('update');
 $app->put('/product/update/{id:[0-9]+}', 'App\Controller\ProductController:update')->setName('update');
 $app->get('/product/update/status/{id:[0-9]+}', 'App\Controller\ProductController:updateStatus')->setName('updateStatus');

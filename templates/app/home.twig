@@ -6,8 +6,9 @@
     <div class="ui raised very padded text container segment">
         <h2 class="ui header">Welcome to Touch Media</h2>
         {% if auth.check() %}
-            <a href="{{ path_for('new') }}">Update Information</a>
-        {% else %}
+            <a href="{{ path_for('new') }}">Update Information</a></br>
+            <a href="{{ path_for('view',{id: user.id}) }}">Profile</a>
+            {% else %}
             <a href="{{ path_for('register') }}">Registration</a>
         {% endif %}
    </div>

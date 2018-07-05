@@ -27,6 +27,9 @@ final class CustomerController extends Controller
 
     public function new(Request $request, Response $response)
     {
+        $userTable = User::with('customer')->orderBy('user.id','DESC')
+            ->first();
+
         $route = $request->getAttribute('route');
         $id = $route->getArguments('id');
 
@@ -37,15 +40,17 @@ final class CustomerController extends Controller
             $address = $request->getParam('address');
             $phoneNo = $request->getParam('phoneNo');
             $email = $request->getParam('email');
-
+            $ids = $request->getParam('id');
+            $stas = $request->getParam('id');
 
             $customer = ([
+                    'id' => $ids,
                     'name' => $name,
                     'icNo' => $icNo,
                     'address' => $address,
                     'phoneNo' =>$phoneNo,
                     //'email' => $email,
-                    'user_id' => $id,
+                    'user_id' => $stas,
                 ]);
 
             Customer::create($customer);
@@ -91,13 +96,17 @@ final class CustomerController extends Controller
                 $this->flash('success', 'Customer account has been created.');
                 return $this->redirect($response, 'home');
         }
-        return $this->render($response, 'app/newCust.twig');
+
+        return $this->render($response, 'app/newCust.twig' ,[
+        'user' => $userTable,
+        ]);
     }
 
     public function edit(Request $request,Response $response)
     {
         $route = $request->getAttribute('route');
         $id = $route->getArguments('id');
+
 
         $customer = Customer::where($id)->firstOrFail();
 
@@ -177,9 +186,6 @@ final class CustomerController extends Controller
         $this->flash('success', 'Customer account has been deleted');
         return $this->redirect($response, 'customer');
     }
-
-
-
 
 
     public function filter(Request $request, Response $response)
