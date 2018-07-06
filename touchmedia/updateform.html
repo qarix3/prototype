@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Update Customer Form</title>
+<style>
+a {
+    position: absolute;
+    left: 52%;
+    top: 92%;
+    width: 50%;
+}
+</style>
+<script>
+function myFunction() {
+    window.print();
+}
+</script>
+</head>
+<body>
+<br>
+<h1><strong><center>Customer Information</center></strong></h1>
+<table border="3" cellpadding="4" align="center">
+<th colspan="4"><i>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</th></tr>
+<tr>
+<td colspan="2">First Name:</td>
+<td colspan="2"><input name="fname" type="TEXT" placeholder="YOUR FIRST NAME" required="required" id="fname"></td>
+</tr>
+<tr>
+<td colspan="2">Last Name:</td>
+<td colspan="2"><input name="lname" type="TEXT" placeholder="YOUR LAST NAME" required="required" id="lname"></td>
+</tr>
+<tr>
+<td colspan="2">Identification Number:</td>
+<td colspan="2"><input name="idnum" type="TEXT" placeholder="IDENTIFICATION NUMBER" required="required" id="idnum"></td>
+</tr>
+<tr>
+<td colspan="2">Address:</td>
+<br>
+<td colspan="2"><textarea name="address" row="4" cols="20" placeholder="ADDRESS" required="required" id="address"></textarea></td>
+</tr>
+<tr>
+<td colspan="2">Email:</td>
+<td colspan="2"><input name="email" type="text" placeholder="EMAIL" required="required" id="email"></td>
+</tr>
+<tr>
+<td colspan="2">Phone Number:</td>
+<td colspan="2"><input name="phone" type="text" placeholder="PHONE NUMBER" required="required" id="phone"></td>
+</tr>
+
+
+<tr>
+<td colspan="2">Gender:</td>
+<td>Male<input type="radio" name="gender" value="Male"><br>
+Female<input type="radio" name="gender" value="Female"></td>
+</tr>
+<a>
+<input type ="submit" name="submit" value = "Submit"  onclick="show_alert()"/>
+</a>
+</table>
+<br>
+<ul>
+</ul>
+</form>
+</body>
+</html>
