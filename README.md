@@ -6,7 +6,7 @@
 
 Tools list
 
-- ffmpeg (using hardware encoder)
+- ffmpeg (GPU-accelerated video processing)
 - youtube-dl (autoupdate)
 - streamlink 
 - hls.js
