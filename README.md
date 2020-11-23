@@ -13,13 +13,13 @@ Tools list
 
 ## Container: MP4
 
-| - | YouTube recommends setting |
+| - | YouTube recommended setting |
 |---------------------|-------------------------------------------------|
 | -movflags faststart | moov atom at the front of the file (Fast Start) |
 
 ## Video codec: H.264
 
-| - | YouTube recommends setting | Note |
+| - | YouTube recommended setting | Note |
 |---------------------|----------------------------|------|
 | -c:v libx264 | H.264 | |
 | -profile:v high | High Profile | |
@@ -32,7 +32,7 @@ Tools list
 
 ## Audio codec: AAC-LC
 
-| -                | YouTube recommends setting                              | Note |
+| -                | YouTube recommended setting                              | Note |
 |-----------------------------|---------------------------------------------------------|------|
 | -c:a libfdk_aac -profile:a aac_low | AAC-LC| Fraunhofer FDK AAC is a high-quality codec library, but it does not compatible GPL. So your FFmpeg most likely does not contain it. Build FFmpeg manually or use a built-in AAC encoder instead of libfdk_aac. |
 | -b:a 384| Mono 128 kbps, Stereo 384 kbps, 5.1	512 kbps | |
